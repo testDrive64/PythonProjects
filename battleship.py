@@ -1,12 +1,14 @@
-## Planung:
-##  1. Spielweise wählen
-##  2. Runden anzahl
-##  3. Gesamte Runden bis alle boote gefunden wurden
-##  4. Boote können gesetzt werden
-##  5. Boot arten
-##          - 2 x 2 - Felder Boot
-##          - 1 x 3 - Felder Boot
-##          - 1 x 4 - Felder Boot
+"""
+# Planung:
+#  1. Spiel type waehlen
+#  2. Runden anzahl
+#  3. Gesamte Runden bis alle boote gefunden wurden
+#  4. Boote koennen gesetzt werden
+#  5. Boot arten
+#          - 2 x 2 - Felder Boot
+#          - 1 x 3 - Felder Boot
+#          - 1 x 4 - Felder Boot
+"""
 
 from random import randint
 
@@ -16,36 +18,52 @@ def print_menu():
     print "2. Quit"
     choice = int(raw_input("> "))
 
-    menu_point(choice)
+    choice = menu_point(choice)
+    game_option(choice)
 
 def menu_point(choice):
     if choice == 1:
         print "1. Human vs Human"
         print "2. Human vs Comp."
         print "3. Round per Player:"
+        gameType = int(raw_input("New Game> "))
 
-        gametype = int(rawInput("New Game> "))
-
-        gameOption(gametype)
+        return gameType
 
     elif choice == 2:
         break
     else:
         print "Wrong input!"
 
-def gameOption(gameType)
+def game_option(gameType):
+
+    # field size
+    fieldSizeCol = int(raw_input("Columns: "))
+    fieldSizeRow = int(raw_input("Rows   : "))
+
+    # place from the boats
+    print "Place for the boats: "
+    boat1 = int(raw_input("Boat1 (2-field): "))
+    boat2 = int(raw_input("Boat2 (2-field): "))
+    boat3 = int(raw_input("Boat3 (3-field): "))
+    boat4 = int(raw_input("Boat4 (4-field): "))
 
     if gameType == 1:
+        build_board(fieldSizeRow, filedSizeCol)
 
+        start_game(2, boat1, boat2, boat3, boat4)
     elif gameType == 2:
     elif gameType == 3:
     else:
         print "Wrong input!"
 
-# define the game field
-board = []
-for x in range(7):
-    board.append(["O"] * 7)
+def build_board(fieldSizeRow, fieldSizeCol) {
+    # define the game field
+    board = []
+    for x in range(fieldSizeRow):
+        board.append(["O"] * fieldSizeCol)
+    print_board(board)
+}
 
 # print the game field to the screen
 def print_board(board):
