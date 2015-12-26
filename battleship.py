@@ -17,7 +17,8 @@ def print_menu():
     print "1. New Game"
     print "2. Quit"
     choice = int(raw_input("> "))
-
+    while choice is not 1 and choice is not 2:
+        choice = int(raw_input("Type 1 or 2: "))
     choice = menu_point(choice)
     game_option(choice)
 
@@ -31,12 +32,14 @@ def menu_point(choice):
         return gameType
 
     elif choice == 2:
+        print "Programm stops"
         break
     else:
         print "Wrong input!"
 
 def game_option(gameType):
 
+    print roundsPPlayer
     # field size
     fieldSizeCol = int(raw_input("Columns: "))
     fieldSizeRow = int(raw_input("Rows   : "))
@@ -48,22 +51,29 @@ def game_option(gameType):
     boat3 = int(raw_input("Boat3 (3-field): "))
     boat4 = int(raw_input("Boat4 (4-field): "))
 
+    # default Round / Player
+    roundsPPlayer = 3
+
     if gameType == 1:
         build_board(fieldSizeRow, filedSizeCol)
 
-        start_game(2, boat1, boat2, boat3, boat4)
+        start_game(2, roundsPPlayer, boat1, boat2, boat3, boat4)
     elif gameType == 2:
+        start_game(1, roundsPPlayer, boat1, boat2, boat3, boat4)
     elif gameType == 3:
+        print "Type Round / Player: "
+        roundsPPlayer = int(raw_input("> "))
+        menu_point(1)
     else:
         print "Wrong input!"
 
-def build_board(fieldSizeRow, fieldSizeCol) {
+def build_board(fieldSizeRow, fieldSizeCol) :
     # define the game field
     board = []
     for x in range(fieldSizeRow):
         board.append(["O"] * fieldSizeCol)
     print_board(board)
-}
+
 
 # print the game field to the screen
 def print_board(board):
